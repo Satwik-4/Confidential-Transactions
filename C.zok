@@ -1,0 +1,20 @@
+import "hashes/sha256/512bitPacked" as sha256packed
+
+def C(field SorR, field[2] hashBalanceBefore, field[2] hashBalanceAfter, field[2] hashValue, private field[4] BalanceBefore, private field[4] value) -> bool:
+    field[2] before = sha256packed([BalanceBefore[0], BalanceBefore[1], BalanceBefore[2], BalanceBefore[3]])
+    field x = BalanceBefore[3]
+    field y = value[3]
+    field z = if SorR == 0 then x - y else x + y fi
+    field[2] after = sha256packed([0, 0, 0, z])
+    field[2] Value = sha256packed([value[0], value[1], value[2], value[3]])
+    bool s = BalanceBefore[3] >= value[3] && before == hashBalanceBefore && after == hashBalanceAfter && Value == hashValue
+    bool r = before == hashBalanceBefore && after == hashBalanceAfter && Value == hashValue
+    bool d = if SorR == 0 then s else r fi
+    return d
+
+
+def main(field SorR, field[2] hashBalanceBefore, field[2] hashBalanceAfter, field[2] hashValue, private field BalanceBefore, private field value) -> bool:
+
+    field a = 0
+    bool h = C(SorR, hashBalanceBefore, hashBalanceAfter, hashValue, [a,a,a, BalanceBefore], [a,a,a, value])
+    return h
