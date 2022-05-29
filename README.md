@@ -1,3 +1,4 @@
 # Confidential-Transactions
 ### This is a repo to work with and create a ERC-20 token that supports "CONFIDENTIAL TRANSACTIONS" by using "zk-SNARKs". 
 ### The zk-SNARKs is a type of highly secure cryptographic testing that uses Zero Knowledge Testing (ZKP) principles to create encrypted data that can be easily verified without revealing sensitive information about such data.
+### The address of the sender or the receiver of transactions is not hidden, but the balances and the sent amounts are hidden. The main idea is that the sender will use their starting balance and the transaction value as private inputs. As public inputs, they use hashes of starting balance, ending balance, and value. Similarly, the receiver will use starting balance and value as secret inputs. As public inputs, they use hashes of starting balance, ending balance, and value.
